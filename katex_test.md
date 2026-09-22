@@ -75,3 +75,19 @@ $$
    * Sub bullet
      ### A heading inside the sub bullet
      $$\delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)$$
+
+## 11. Loose list (blank line between items), single-line $$...$$ in first item
+
+1. Item one text
+   $$\delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)$$
+
+2. Item two text, forces loose list
+
+## 12. Loose list, multi-line $$ block in first item
+
+1. Item one text
+   $$
+   \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)
+   $$
+
+2. Item two text, forces loose list
