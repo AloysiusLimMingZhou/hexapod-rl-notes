@@ -172,16 +172,19 @@ Q^*(s, a) = \underbrace{max}_{\pi}Q^\pi(s, a)
 13. Iteration: A full cycle of running full rollout, aimed to gather latest fresh data based on action of agent with the environment. 
 
 Example (4096 env of playing 10 chess game):
-Iteration (Game 0 - 9) <-----------------------------
-    | 						    |
-    V						    |
- Episode (Game Win/Lose)			    |
-    | 						    |
-    V						    |
- Rollout (Every 10 moves in a game) 		    |
-    |						    |
-    V						    |
- Epochs (Take actions from rollout, run 6 times) ---|
+
+```text
+Iteration (Game 0 - 9) <------------------------------
+    |                                                |
+    V                                                |
+ Episode (Game Win/Lose)                             |
+    |                                                |
+    V                                                |
+ Rollout (Every 10 moves in a game)                  |
+    |                                                |
+    V                                                |
+ Epochs (Take actions from rollout, run 6 times) ----|
+```
 
 14. Trajectory, ($\tau$): Sequence of state and actions in the environment. $\tau = (s_0, a_0, s_1, a_1, ...)$
 

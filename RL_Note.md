@@ -180,8 +180,7 @@ A transition is the smallest common unit placed into a DQN, SAC, or TD3 replay b
 A **state** contains enough information to predict the distribution of the future, provided the next action is known. Formally, a Markov state satisfies:
 
 $$
-P(S_{t+1}\mid S_0,A_0,\ldots,S_t,A_t)
-=
+P(S_{t+1}\mid S_0,A_0,\ldots,S_t,A_t) =
 P(S_{t+1}\mid S_t,A_t).
 $$
 
@@ -451,8 +450,7 @@ $$
 Products of many small probabilities can underflow numerically. Taking the logarithm converts products into sums:
 
 $$
-\log\pi_\theta(a\mid s)
-=
+\log\pi_\theta(a\mid s) =
 \sum_{i=1}^{d}\log\mathcal N(a_i;\mu_i(s),\sigma_i^2(s)).
 $$
 
@@ -463,8 +461,7 @@ The log is monotonic, so an action with higher probability also has higher log-p
 - Probability ratios can be computed stably:
 
 $$
-\frac{\pi_{\theta}(a\mid s)}{\pi_{\theta_{old}}(a\mid s)}
-=
+\frac{\pi_{\theta}(a\mid s)}{\pi_{\theta_{old}}(a\mid s)} =
 \exp\left(\log\pi_\theta(a\mid s)-\log\pi_{\theta_{old}}(a\mid s)\right)
 $$
 
@@ -717,8 +714,7 @@ The MDP itself defines the task. The policy defines the agent's current strategy
 The Markov property states that the current state contains all relevant predictive information:
 
 $$
-P(S_{t+1}\mid S_0,A_0,\ldots,S_t,A_t)
-=
+P(S_{t+1}\mid S_0,A_0,\ldots,S_t,A_t) =
 P(S_{t+1}\mid S_t,A_t).
 $$
 
@@ -760,16 +756,14 @@ The Bellman equation decomposes a long-term value into immediate reward plus the
 For a state-value function:
 
 $$
-V^\pi(s)
-=
+V^\pi(s) =
 \mathbb E_\pi\left[R_{t+1}+\gamma V^\pi(S_{t+1})\mid S_t=s\right].
 $$
 
 Expanded over actions and next states:
 
 $$
-V^\pi(s)
-=
+V^\pi(s) =
 \sum_a\pi(a\mid s)
 \sum_{s'}P(s'\mid s,a)
 \left[R(s,a,s')+\gamma V^\pi(s')\right].
@@ -778,8 +772,7 @@ $$
 For an action-value function:
 
 $$
-Q^\pi(s,a)
-=
+Q^\pi(s,a) =
 \mathbb E\left[
 R_{t+1}+\gamma\mathbb E_{A_{t+1}\sim\pi}[Q^\pi(S_{t+1},A_{t+1})]
 \mid S_t=s,A_t=a
@@ -804,8 +797,7 @@ V^*(s)=\max_a\mathbb E[R_{t+1}+\gamma V^*(S_{t+1})\mid s,a],
 $$
 
 $$
-Q^*(s,a)
-=
+Q^*(s,a) =
 \mathbb E\left[R_{t+1}+\gamma\max_{a'}Q^*(S_{t+1},a')\mid s,a\right].
 $$
 
@@ -1014,8 +1006,7 @@ Off-policy Monte Carlo evaluates or improves a target policy $\pi$ using episode
 A trajectory's importance ratio from time $t$ is:
 
 $$
-\rho_{t:T-1}
-=
+\rho_{t:T-1} =
 \prod_{k=t}^{T-1}
 \frac{\pi(A_k\mid S_k)}{\mu(A_k\mid S_k)}.
 $$
@@ -1152,8 +1143,7 @@ for continuous actions.
 The action value can be decomposed into one immediate transition and the next state's value:
 
 $$
-Q^\pi(s,a)
-=
+Q^\pi(s,a) =
 \mathbb E\left[R_{t+1}+\gamma V^\pi(S_{t+1})\mid S_t=s,A_t=a\right].
 $$
 
@@ -1396,8 +1386,7 @@ Imagine learning a route near a cliff:
 Expected SARSA averages over next actions instead of sampling one:
 
 $$
-Y_t^{ExpSARSA}
-=
+Y_t^{ExpSARSA} =
 R_{t+1}+\gamma\sum_{a'}\pi(a'\mid S_{t+1})Q(S_{t+1},a').
 $$
 
@@ -1408,8 +1397,7 @@ This can reduce variance relative to ordinary SARSA.
 One-step TD looks ahead one reward. Monte Carlo looks to the end. An $n$-step target lies between them:
 
 $$
-G_{t:t+n}
-=
+G_{t:t+n} =
 R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1}R_{t+n}
 +\gamma^nV(S_{t+n}).
 $$
@@ -1438,22 +1426,19 @@ The backward view uses eligibility traces to assign credit to recently visited s
 Generalized Advantage Estimation applies an exponentially weighted sum of TD residuals:
 
 $$
-\delta_t
-=
+\delta_t =
 R_{t+1}+\gamma m_{t+1}V(S_{t+1})-V(S_t),
 $$
 
 $$
-\hat A_t^{GAE(\gamma,\lambda)}
-=
+\hat A_t^{GAE(\gamma,\lambda)} =
 \delta_t+\gamma\lambda m_{t+1}\hat A_{t+1}.
 $$
 
 Equivalently:
 
 $$
-\hat A_t
-=
+\hat A_t =
 \sum_{l=0}^{\infty}(\gamma\lambda)^l\delta_{t+l}
 $$
 
@@ -1606,8 +1591,7 @@ $$
 The trajectory probability is:
 
 $$
-p_\theta(\tau)
-=
+p_\theta(\tau) =
 \rho_0(S_0)
 \prod_{t=0}^{T-1}
 \pi_\theta(A_t\mid S_t)
@@ -1617,24 +1601,21 @@ $$
 Only the policy depends on $\theta$. Using the log-derivative identity:
 
 $$
-\nabla_\theta p_\theta(\tau)
-=
+\nabla_\theta p_\theta(\tau) =
 p_\theta(\tau)\nabla_\theta\log p_\theta(\tau),
 $$
 
 and:
 
 $$
-\nabla_\theta\log p_\theta(\tau)
-=
+\nabla_\theta\log p_\theta(\tau) =
 \sum_t\nabla_\theta\log\pi_\theta(A_t\mid S_t),
 $$
 
 we obtain the policy-gradient form:
 
 $$
-\nabla_\theta J(\theta)
-=
+\nabla_\theta J(\theta) =
 \mathbb E_{\tau\sim\pi_\theta}
 \left[
 \sum_t\nabla_\theta\log\pi_\theta(A_t\mid S_t)G_t
@@ -1646,8 +1627,7 @@ Using the return from time $t$ rather than the full episode return for every act
 With a baseline:
 
 $$
-\nabla_\theta J(\theta)
-=
+\nabla_\theta J(\theta) =
 \mathbb E\left[
 \nabla_\theta\log\pi_\theta(A_t\mid S_t)
 \left(G_t-b(S_t)\right)
@@ -2205,8 +2185,7 @@ AlphaZero uses the known game rules to perform MCTS and learned policy/value net
 A learned model may optimize:
 
 $$
-L_{dyn}(\psi)
-=
+L_{dyn}(\psi) =
 \mathbb E[\|f_\psi(S_t,A_t)-S_{t+1}\|^2]
 $$
 
@@ -2404,8 +2383,7 @@ $$
 For a discrete action set, one forward pass commonly outputs all action values:
 
 $$
-Q_\theta(s,\cdot)
-=
+Q_\theta(s,\cdot) =
 [Q_\theta(s,a_1),\ldots,Q_\theta(s,a_n)].
 $$
 
@@ -2432,8 +2410,7 @@ The exploratory behaviour policy differs from the greedy target policy, making D
 The basic DQN target is:
 
 $$
-y_t
-=
+y_t =
 R_{t+1}
 +
 \gamma m_{t+1}
@@ -2449,8 +2426,7 @@ where:
 The critic is trained with mean squared error or Huber loss:
 
 $$
-L(\theta)
-=
+L(\theta) =
 \mathbb E_{(s,a,r,s',m)\sim\mathcal D}
 \left[
 \operatorname{Huber}(Q_\theta(s,a)-y)
@@ -2566,8 +2542,7 @@ $$
 Because this decomposition is not unique, a common aggregation is:
 
 $$
-Q(s,a)
-=
+Q(s,a) =
 V(s)+A(s,a)-\frac{1}{|\mathcal A|}\sum_{a'}A(s,a').
 $$
 
@@ -2594,8 +2569,7 @@ The loss is weighted by $w_i$. Prioritization can improve learning speed but add
 An $n$-step target is:
 
 $$
-y_t^{(n)}
-=
+y_t^{(n)} =
 \sum_{k=0}^{n-1}\gamma^kR_{t+k+1}
 +
 \gamma^nm_{t+n}Q_{\bar\theta}(S_{t+n},a^*).
@@ -2760,24 +2734,21 @@ After $T$ steps from $N$ parallel environments, it computes advantages and value
 The TD residual is:
 
 $$
-\delta_t
-=
+\delta_t =
 R_{t+1}+\gamma m_{t+1}V_{old}(S_{t+1})-V_{old}(S_t).
 $$
 
 The generalized advantage estimate is:
 
 $$
-\hat A_t
-=
+\hat A_t =
 \delta_t+\gamma\lambda m_{t+1}\hat A_{t+1}.
 $$
 
 The value target is commonly:
 
 $$
-\hat V_t^{target}
-=
+\hat V_t^{target} =
 \hat A_t+V_{old}(S_t).
 $$
 
@@ -2794,13 +2765,10 @@ $$
 The probability ratio is:
 
 $$
-r_t(\theta)
-=
-\frac{\pi_\theta(A_t\mid S_t)}{\pi_{old}(A_t\mid S_t)}
-=
+r_t(\theta) =
+\frac{\pi_\theta(A_t\mid S_t)}{\pi_{old}(A_t\mid S_t)} =
 \exp\left(
-\log\pi_\theta(A_t\mid S_t)
--
+\log\pi_\theta(A_t\mid S_t) -
 \log\pi_{old}(A_t\mid S_t)
 \right).
 $$
@@ -2816,8 +2784,7 @@ Interpretation:
 An importance-weighted surrogate is:
 
 $$
-L^{PG}(\theta)
-=
+L^{PG}(\theta) =
 \mathbb E[r_t(\theta)\hat A_t].
 $$
 
@@ -2830,8 +2797,7 @@ However, the objective can encourage a probability ratio to move too far.
 PPO uses:
 
 $$
-L^{CLIP}(\theta)
-=
+L^{CLIP}(\theta) =
 \mathbb E_t\left[
 \min\left(
  r_t(\theta)\hat A_t,
@@ -2897,16 +2863,14 @@ Training may stop an epoch early if KL exceeds a threshold. The clipped objectiv
 The critic can use:
 
 $$
-L_V(\phi)
-=
+L_V(\phi) =
 \mathbb E[(V_\phi(S_t)-\hat V_t^{target})^2].
 $$
 
 Some PPO implementations also clip value changes:
 
 $$
-V_{clip}(S_t)
-=
+V_{clip}(S_t) =
 V_{old}(S_t)
 +
 \operatorname{clip}(V_\phi(S_t)-V_{old}(S_t),-\epsilon_v,\epsilon_v).
@@ -2927,8 +2891,7 @@ may be included under a minimization convention.
 A common total loss is:
 
 $$
-L_{total}
-=
+L_{total} =
 -L^{CLIP}
 +c_vL_V
 -c_e\mathbb E[\mathcal H(\pi_\theta)].
@@ -3005,8 +2968,7 @@ $$
 The joint log-probability under independent dimensions is:
 
 $$
-\log\pi(a\mid s)
-=
+\log\pi(a\mid s) =
 \sum_{i=1}^d\log\mathcal N(a_i;\mu_i(s),\sigma_i^2(s)).
 $$
 
@@ -3125,8 +3087,7 @@ $$
 The target uses the smaller estimate:
 
 $$
-y
-=
+y =
 r+\gamma m
 \min_{i\in\{1,2\}}Q_{\bar\phi_i}(s',a').
 $$
@@ -3142,8 +3103,7 @@ Before accepting an optimistic investment estimate, ask two analysts and use the
 The target action is perturbed:
 
 $$
-\tilde a'
-=
+\tilde a' =
 \mu_{\bar\theta}(s')
 +
 \operatorname{clip}(\epsilon,-c,c),
@@ -3158,8 +3118,7 @@ The action is then clipped to valid bounds.
 The target becomes:
 
 $$
-y
-=
+y =
 r+\gamma m
 \min_iQ_{\bar\phi_i}(s',\tilde a').
 $$
@@ -3182,8 +3141,7 @@ Reason:
 For each critic:
 
 $$
-L_{Q_i}(\phi_i)
-=
+L_{Q_i}(\phi_i) =
 \mathbb E_{\mathcal D}
 [(Q_{\phi_i}(s,a)-y)^2].
 $$
@@ -3324,8 +3282,7 @@ $$
 SAC maximizes:
 
 $$
-J(\pi)
-=
+J(\pi) =
 \mathbb E\left[
 \sum_{t=0}^{\infty}\gamma^t
 \left(
@@ -3403,10 +3360,8 @@ This is the reparameterization trick. The random noise is separated from the net
 Because $a=\tanh(u)$ transforms the distribution, the log-probability must include the change-of-variables correction:
 
 $$
-\log\pi(a\mid s)
-=
-\log\mathcal N(u;\mu,\sigma^2)
--
+\log\pi(a\mid s) =
+\log\mathcal N(u;\mu,\sigma^2) -
 \sum_i\log(1-\tanh^2(u_i)+\varepsilon).
 $$
 
@@ -3423,12 +3378,10 @@ $$
 The target is:
 
 $$
-y
-=
+y =
 r+\gamma m
 \left[
-\min_{i=1,2}Q_{\bar\phi_i}(s',a')
--
+\min_{i=1,2}Q_{\bar\phi_i}(s',a') -
 \alpha\log\pi_\theta(a'\mid s')
 \right].
 $$
@@ -3438,8 +3391,7 @@ The entropy term raises the soft value of states where the policy retains useful
 ## 13.7 Critic losses
 
 $$
-L_{Q_i}(\phi_i)
-=
+L_{Q_i}(\phi_i) =
 \mathbb E_{\mathcal D}
 [(Q_{\phi_i}(s,a)-y)^2].
 $$
@@ -3451,12 +3403,10 @@ As in TD3, the minimum of twin critics reduces overestimation.
 The actor minimizes:
 
 $$
-L_\pi(\theta)
-=
+L_\pi(\theta) =
 \mathbb E_{s\sim\mathcal D,a\sim\pi_\theta}
 \left[
-\alpha\log\pi_\theta(a\mid s)
--
+\alpha\log\pi_\theta(a\mid s) -
 \min_iQ_{\phi_i}(s,a)
 \right].
 $$
@@ -3475,8 +3425,7 @@ Rather than manually setting $\alpha$, SAC can optimize it toward a target entro
 A common loss is:
 
 $$
-L(\alpha)
-=
+L(\alpha) =
 \mathbb E_{a\sim\pi}
 \left[
 -\alpha\left(\log\pi(a\mid s)+\mathcal H_{target}\right)
@@ -3569,8 +3518,7 @@ SAC often needs less manual exploration-noise tuning. TD3 can be simpler when a 
 SAC is most commonly associated with continuous control, but discrete variants exist. For a small discrete action set, expectations over actions can be computed exactly:
 
 $$
-V(s)
-=
+V(s) =
 \sum_a\pi(a\mid s)
 \left[Q(s,a)-\alpha\log\pi(a\mid s)\right].
 $$
@@ -4371,8 +4319,7 @@ $$
 ## 18.13 Policy-gradient theorem form
 
 $$
-\nabla_\theta J(\theta)
-=
+\nabla_\theta J(\theta) =
 \mathbb E[\nabla_\theta\log\pi_\theta(A_t\mid S_t)Q^\pi(S_t,A_t)].
 $$
 
@@ -4409,8 +4356,7 @@ $$
 ## 18.17 PPO clipped objective
 
 $$
-L^{CLIP}
-=
+L^{CLIP} =
 \mathbb E[
 \min(r_t\hat A_t,
 \operatorname{clip}(r_t,1-\epsilon,1+\epsilon)\hat A_t)
@@ -4445,8 +4391,7 @@ $$
 ## 18.21 SAC actor loss
 
 $$
-L_\pi
-=
+L_\pi =
 \mathbb E[
 \alpha\log\pi_\theta(a\mid s)-\min_iQ_{\phi_i}(s,a)
 ].

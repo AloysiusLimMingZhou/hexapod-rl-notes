@@ -136,17 +136,13 @@
     ---
     
     ### Core Formulas
-    
+
 ```math
-\delta_t = r_t + \gamma V(s_{t+1})(1 - done_t) - V(s_t)
-```
-    
-```math
-A_t = \delta_t + \gamma \lambda (1 - done_t) A_{t+1}
-```
-    
-```math
-R_t = A_t + V(s_t)
+\begin{aligned}
+\delta_t &= r_t + \gamma V(s_{t+1})(1 - done_t) - V(s_t) \\
+A_t &= \delta_t + \gamma \lambda (1 - done_t) A_{t+1} \\
+R_t &= A_t + V(s_t)
+\end{aligned}
 ```
     
     ---
@@ -156,122 +152,76 @@ R_t = A_t + V(s_t)
     ---
     
     ### Terminal Step (t = 9, done = 1)
-    
+
 ```math
 \begin{aligned}
 \delta_9 &= r_9 - V(s_9) \\
-&= 4 - 2 = 2
+&= 4 - 2 = 2 \\
+A_9 &= 2 \\
+R_9 &= 2 + 2 = 4
 \end{aligned}
-```
-    
-```math
-A_9 = 2
-```
-    
-```math
-R_9 = 2 + 2 = 4
 ```
     
     ---
     
     ### Step t = 8
-    
+
 ```math
 \begin{aligned}
 \delta_8 &= r_8 + \gamma V(s_9) - V(s_8) \\
-&= 3 + 0.99(2) - 1 = 3.98
-\end{aligned}
-```
-    
-```math
-\begin{aligned}
+&= 3 + 0.99(2) - 1 = 3.98 \\
 A_8 &= \delta_8 + \gamma \lambda A_9 \\
-&= 3.98 + 0.99(0.6)(2) = 5.168
+&= 3.98 + 0.99(0.6)(2) = 5.168 \\
+R_8 &= 5.168 + 1 = 6.168
 \end{aligned}
-```
-    
-```math
-R_8 = 5.168 + 1 = 6.168
 ```
     
     ---
     
     ### Step t = 7
-    
+
 ```math
 \begin{aligned}
-\delta_7 &= 2 + 0.99(1) - 2 = 0.99
+\delta_7 &= 2 + 0.99(1) - 2 = 0.99 \\
+A_7 &= 0.99 + 0.99(0.6)(5.168) = 4.06 \\
+R_7 &= 4.06 + 2 = 6.06
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_7 &= 0.99 + 0.99(0.6)(5.168) = 4.06
-\end{aligned}
-```
-    
-```math
-R_7 = 4.06 + 2 = 6.06
 ```
     
     ---
     
     ### Step t = 6
-    
+
 ```math
 \begin{aligned}
-\delta_6 &= 1 + 0.99(2) - 3 = -0.02
+\delta_6 &= 1 + 0.99(2) - 3 = -0.02 \\
+A_6 &= -0.02 + 0.99(0.6)(4.06) = 2.39 \\
+R_6 &= 2.39 + 3 = 5.39
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_6 &= -0.02 + 0.99(0.6)(4.06) = 2.39
-\end{aligned}
-```
-    
-```math
-R_6 = 2.39 + 3 = 5.39
 ```
     
     ---
     
     ### Step t = 5
-    
+
 ```math
 \begin{aligned}
-\delta_5 &= 2 + 0.99(3) - 4 = 0.97
+\delta_5 &= 2 + 0.99(3) - 4 = 0.97 \\
+A_5 &= 0.97 + 0.99(0.6)(2.39) = 2.39 \\
+R_5 &= 2.39 + 4 = 6.39
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_5 &= 0.97 + 0.99(0.6)(2.39) = 2.39
-\end{aligned}
-```
-    
-```math
-R_5 = 2.39 + 4 = 6.39
 ```
     
     ---
     
     ### Step t = 4
-    
+
 ```math
 \begin{aligned}
-\delta_4 &= 3 + 0.99(4) - 5 = 1.96
+\delta_4 &= 3 + 0.99(4) - 5 = 1.96 \\
+A_4 &= 1.96 + 0.99(0.6)(2.39) = 3.38 \\
+R_4 &= 3.38 + 5 = 8.38
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_4 &= 1.96 + 0.99(0.6)(2.39) = 3.38
-\end{aligned}
-```
-    
-```math
-R_4 = 3.38 + 5 = 8.38
 ```
     
     ---
@@ -281,81 +231,49 @@ R_4 = 3.38 + 5 = 8.38
     ---
     
     ### Step t = 3
-    
+
 ```math
 \begin{aligned}
-\delta_3 &= 4 + 0.99(5) - 4 = 4.95
+\delta_3 &= 4 + 0.99(5) - 4 = 4.95 \\
+A_3 &= 4.95 + 0.99(0.6)(3.38) = 6.96 \\
+R_3 &= 6.96 + 4 = 10.96
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_3 &= 4.95 + 0.99(0.6)(3.38) = 6.96
-\end{aligned}
-```
-    
-```math
-R_3 = 6.96 + 4 = 10.96
 ```
     
     ---
     
     ### Step t = 2
-    
+
 ```math
 \begin{aligned}
-\delta_2 &= 3 + 0.99(4) - 3 = 3.96
+\delta_2 &= 3 + 0.99(4) - 3 = 3.96 \\
+A_2 &= 3.96 + 0.99(0.6)(6.96) = 8.09 \\
+R_2 &= 8.09 + 3 = 11.09
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_2 &= 3.96 + 0.99(0.6)(6.96) = 8.09
-\end{aligned}
-```
-    
-```math
-R_2 = 8.09 + 3 = 11.09
 ```
     
     ---
     
     ### Step t = 1
-    
+
 ```math
 \begin{aligned}
-\delta_1 &= 2 + 0.99(3) - 2 = 2.97
+\delta_1 &= 2 + 0.99(3) - 2 = 2.97 \\
+A_1 &= 2.97 + 0.99(0.6)(8.09) = 7.77 \\
+R_1 &= 7.77 + 2 = 9.77
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_1 &= 2.97 + 0.99(0.6)(8.09) = 7.77
-\end{aligned}
-```
-    
-```math
-R_1 = 7.77 + 2 = 9.77
 ```
     
     ---
     
     ### Step t = 0
-    
+
 ```math
 \begin{aligned}
-\delta_0 &= 1 + 0.99(2) - 1 = 1.98
+\delta_0 &= 1 + 0.99(2) - 1 = 1.98 \\
+A_0 &= 1.98 + 0.99(0.6)(7.77) = 6.59 \\
+R_0 &= 6.59 + 1 = 7.59
 \end{aligned}
-```
-    
-```math
-\begin{aligned}
-A_0 &= 1.98 + 0.99(0.6)(7.77) = 6.59
-\end{aligned}
-```
-    
-```math
-R_0 = 6.59 + 1 = 7.59
 ```
     
     ---
