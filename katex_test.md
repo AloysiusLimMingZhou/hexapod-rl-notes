@@ -40,3 +40,21 @@ $$
    $$
    \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)
    $$
+
+## 6. Nested inside list item, separated by blank line (loose list paragraph)
+
+1. Some list item text
+
+   $$
+   \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)
+   $$
+
+## 7. Nested two levels deep (matches real notes structure)
+
+1. Top level item
+   * Sub bullet
+     ### A heading inside the sub bullet
+
+     $$
+     \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)
+     $$
