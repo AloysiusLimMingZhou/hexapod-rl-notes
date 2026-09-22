@@ -249,7 +249,7 @@ For a discrete stochastic policy, a neural network commonly outputs logits and a
 $$
 z_\theta(s)\in\mathbb R^{|\mathcal A|},
 \qquad
-\pi_\theta(a\mid s)=\operatorname{softmax}(z_\theta(s))_a.
+\pi_\theta(a\mid s)=\mathrm{softmax}(z_\theta(s))_a.
 $$
 
 ### Continuous action space
@@ -272,7 +272,7 @@ For continuous stochastic control, a policy often predicts a Gaussian distributi
 $$
 \mu_\theta(s),\log \sigma_\theta(s),
 \qquad
-u\sim\mathcal N(\mu_\theta(s),\operatorname{diag}(\sigma_\theta^2(s))).
+u\sim\mathcal N(\mu_\theta(s),\mathrm{diag}(\sigma_\theta^2(s))).
 $$
 
 The raw sample may then be squashed into bounded action limits:
@@ -422,7 +422,7 @@ followed by an output head.
 For a discrete actor:
 
 $$
-\pi_\theta(\cdot\mid o)=\operatorname{Categorical}(\operatorname{softmax}(W_3h_2+b_3)).
+\pi_\theta(\cdot\mid o)=\mathrm{Categorical}(\mathrm{softmax}(W_3h_2+b_3)).
 $$
 
 For a Gaussian continuous actor:
@@ -432,7 +432,7 @@ $$
 $$
 
 $$
-\log\sigma_\theta(o)=\operatorname{clip}(W_\sigma h_2+b_\sigma,\ell,u).
+\log\sigma_\theta(o)=\mathrm{clip}(W_\sigma h_2+b_\sigma,\ell,u).
 $$
 
 In some PPO implementations, $\log\sigma$ is a learned state-independent parameter instead of a network output.
@@ -793,18 +793,18 @@ Bellman equations apply this recursive decomposition to decision-making.
 The optimal value functions assume that the best possible decisions are made from the next state onward:
 
 $$
-V^*(s)=\max_a\mathbb E[R_{t+1}+\gamma V^*(S_{t+1})\mid s,a],
+V^{*}(s)=\max_a\mathbb E[R_{t+1}+\gamma V^{*}(S_{t+1})\mid s,a],
 $$
 
 $$
-Q^*(s,a) =
-\mathbb E\left[R_{t+1}+\gamma\max_{a'}Q^*(S_{t+1},a')\mid s,a\right].
+Q^{*}(s,a) =
+\mathbb E\left[R_{t+1}+\gamma\max_{a'}Q^{*}(S_{t+1},a')\mid s,a\right].
 $$
 
-An optimal policy can be recovered from $Q^*$:
+An optimal policy can be recovered from $Q^{*}$:
 
 $$
-\pi^*(s)\in\arg\max_aQ^*(s,a).
+\pi^{*}(s)\in\arg\max_aQ^{*}(s,a).
 $$
 
 This is the conceptual foundation of Q-learning and DQN.
@@ -1211,13 +1211,13 @@ Both raw returns are positive, but the advantage correctly says that B was worse
 The optimal state value is:
 
 $$
-V^*(s)=\max_\pi V^\pi(s).
+V^{*}(s)=\max_\pi V^\pi(s).
 $$
 
 The optimal action value is:
 
 $$
-Q^*(s,a)=\max_\pi Q^\pi(s,a).
+Q^{*}(s,a)=\max_\pi Q^\pi(s,a).
 $$
 
 They answer what can be achieved by the best possible future policy, not merely the current one.
@@ -1225,17 +1225,17 @@ They answer what can be achieved by the best possible future policy, not merely 
 For discrete actions:
 
 $$
-V^*(s)=\max_aQ^*(s,a).
+V^{*}(s)=\max_aQ^{*}(s,a).
 $$
 
-DQN approximates $Q^*$, while a PPO critic normally approximates $V^{\pi_\theta}$ for the current actor.
+DQN approximates $Q^{*}$, while a PPO critic normally approximates $V^{\pi_\theta}$ for the current actor.
 
 ## 5.7 What different algorithms learn
 
 | Algorithm | Main learned quantities |
 |---|---|
-| Tabular Q-learning | $Q^*(s,a)$ |
-| DQN | Neural approximation $Q_\theta(s,a)\approx Q^*(s,a)$ |
+| Tabular Q-learning | $Q^{*}(s,a)$ |
+| DQN | Neural approximation $Q_\theta(s,a)\approx Q^{*}(s,a)$ |
 | REINFORCE | Policy $\pi_\theta$; optional baseline |
 | PPO | Actor $\pi_\theta$ and usually critic $V_\phi$ |
 | TD3 | Deterministic actor $\mu_\theta$ and two critics $Q_{\phi_1},Q_{\phi_2}$ |
@@ -2377,7 +2377,7 @@ $$
 This is practical only when the state space is small. A 2048 board has an enormous number of possible configurations, while image-based Atari states are effectively uncountable. A neural network generalizes across similar states:
 
 $$
-Q_\theta(s,a)\approx Q^*(s,a).
+Q_\theta(s,a)\approx Q^{*}(s,a).
 $$
 
 For a discrete action set, one forward pass commonly outputs all action values:
@@ -2429,7 +2429,7 @@ $$
 L(\theta) =
 \mathbb E_{(s,a,r,s',m)\sim\mathcal D}
 \left[
-\operatorname{Huber}(Q_\theta(s,a)-y)
+\mathrm{Huber}(Q_\theta(s,a)-y)
 \right].
 $$
 
@@ -2520,13 +2520,13 @@ Double DQN separates action selection from action evaluation.
 Select with the online network:
 
 $$
-a^*=\arg\max_{a'}Q_\theta(s',a').
+a^{*}=\arg\max_{a'}Q_\theta(s',a').
 $$
 
 Evaluate with the target network:
 
 $$
-y=r+\gamma mQ_{\bar\theta}(s',a^*).
+y=r+\gamma mQ_{\bar\theta}(s',a^{*}).
 $$
 
 This reduces maximization bias without requiring a completely separate second critic architecture.
@@ -2572,7 +2572,7 @@ $$
 y_t^{(n)} =
 \sum_{k=0}^{n-1}\gamma^kR_{t+k+1}
 +
-\gamma^nm_{t+n}Q_{\bar\theta}(S_{t+n},a^*).
+\gamma^nm_{t+n}Q_{\bar\theta}(S_{t+n},a^{*}).
 $$
 
 It propagates reward information more quickly than one-step targets, while retaining bootstrapping.
@@ -2801,7 +2801,7 @@ L^{CLIP}(\theta) =
 \mathbb E_t\left[
 \min\left(
  r_t(\theta)\hat A_t,
- \operatorname{clip}(r_t(\theta),1-\epsilon,1+\epsilon)\hat A_t
+ \mathrm{clip}(r_t(\theta),1-\epsilon,1+\epsilon)\hat A_t
 \right)
 \right].
 $$
@@ -2829,7 +2829,7 @@ These are separate mechanisms.
 Clips the **policy probability ratio inside the objective**:
 
 $$
-\operatorname{clip}(r_t,1-\epsilon,1+\epsilon).
+\mathrm{clip}(r_t,1-\epsilon,1+\epsilon).
 $$
 
 Its purpose is to limit incentive for large policy changes.
@@ -2873,7 +2873,7 @@ $$
 V_{clip}(S_t) =
 V_{old}(S_t)
 +
-\operatorname{clip}(V_\phi(S_t)-V_{old}(S_t),-\epsilon_v,\epsilon_v).
+\mathrm{clip}(V_\phi(S_t)-V_{old}(S_t),-\epsilon_v,\epsilon_v).
 $$
 
 Then they use the larger of clipped and unclipped squared errors. Value clipping is optional and its benefit is task-dependent.
@@ -3106,7 +3106,7 @@ $$
 \tilde a' =
 \mu_{\bar\theta}(s')
 +
-\operatorname{clip}(\epsilon,-c,c),
+\mathrm{clip}(\epsilon,-c,c),
 $$
 
 $$
@@ -4196,7 +4196,7 @@ $$
 and:
 
 $$
-\min(r_tA_t,\operatorname{clip}(r_t,1-\epsilon,1+\epsilon)A_t).
+\min(r_tA_t,\mathrm{clip}(r_t,1-\epsilon,1+\epsilon)A_t).
 $$
 
 Log-probabilities are used to compute $r_t$ stably, but $\log(r_t)A_t$ is not the standard PPO clipped objective.
@@ -4283,7 +4283,7 @@ $$
 ## 18.7 Bellman optimality equation
 
 $$
-Q^*(s,a)=\mathbb E[R_{t+1}+\gamma\max_{a'}Q^*(S_{t+1},a')\mid s,a].
+Q^{*}(s,a)=\mathbb E[R_{t+1}+\gamma\max_{a'}Q^{*}(S_{t+1},a')\mid s,a].
 $$
 
 ## 18.8 Monte Carlo value update
@@ -4340,11 +4340,11 @@ $$
 ## 18.15 Double DQN target
 
 $$
-a^*=\arg\max_{a'}Q_\theta(s',a'),
+a^{*}=\arg\max_{a'}Q_\theta(s',a'),
 $$
 
 $$
-y=r+\gamma mQ_{\bar\theta}(s',a^*).
+y=r+\gamma mQ_{\bar\theta}(s',a^{*}).
 $$
 
 ## 18.16 PPO ratio
@@ -4359,14 +4359,14 @@ $$
 L^{CLIP} =
 \mathbb E[
 \min(r_t\hat A_t,
-\operatorname{clip}(r_t,1-\epsilon,1+\epsilon)\hat A_t)
+\mathrm{clip}(r_t,1-\epsilon,1+\epsilon)\hat A_t)
 ].
 $$
 
 ## 18.18 TD3 target
 
 $$
-\tilde a'=\mu_{\bar\theta}(s')+\operatorname{clip}(\epsilon,-c,c),
+\tilde a'=\mu_{\bar\theta}(s')+\mathrm{clip}(\epsilon,-c,c),
 $$
 
 $$

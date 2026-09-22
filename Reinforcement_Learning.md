@@ -5,17 +5,10 @@
 
 2. Environment: A space that you couldn't directly control, but can interact through agent
 
-  Agent
-    |
-    | (Action) Agent manipulate/interact environment
-    V
-Environment
-
-Environment
-    |
-    | (State) Environment give a result after an agent made an action
-    V
-  Agent
+| Flow | Description |
+|:---|:---|
+| Agent → Environment (Action) | Agent manipulate/interact environment |
+| Environment → Agent (State) | Environment give a result after an agent made an action |
 
 3. Action (a): What the agent do/interact with the environment (i.e. Motor Speed, Direction)
 
