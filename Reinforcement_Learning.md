@@ -157,14 +157,14 @@ $`Q^\pi(s, a) = \underbrace{\mathbb{E}}_{\tau \sim \pi}[R(\tau)|s_0 = s, a_0 = a
 In On-Policy Action-Value Function, it calculates the expected return if the agent start in a state, takes an initial action, and then act and update according to policy $\pi$
 
 10. Optimal Value Function: In Optimal Value Function, it maximizes the expected return if the agent start in a state, and acts according the optimal policy. Optimal policy here refer to the converged neural network.
-    ```math
-    V^*(s) = \underbrace{max}_{\pi}V^\pi(s)
-    ```
+```math
+V^*(s) = \underbrace{max}_{\pi}V^\pi(s)
+```
 
 11. Optimal Action-Value Function: In Optimal Value Function, it maximizes the expected return if the agent start in a state, takes an initial action, and acts according the optimal policy
-    ```math
-    Q^*(s, a) = \underbrace{max}_{\pi}Q^\pi(s, a)
-    ```
+```math
+Q^*(s, a) = \underbrace{max}_{\pi}Q^\pi(s, a)
+```
 
 10. Episode: A complete series of actions done by a model with the state from start to finish
 11. Rollout: A set series of actions done by a model with the state (subset of episode). Used to update policy.

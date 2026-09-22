@@ -1519,7 +1519,8 @@ A value-based method learns a value function and derives behaviour from it.
 For discrete actions, a Q-network maps one state to one score per action:
 
 $$
-f_\theta(s)ightarrow
+f_\theta(s)
+ightarrow
 [Q_\theta(s,a_1),\ldots,Q_\theta(s,a_{|\mathcal A|})].
 $$
 

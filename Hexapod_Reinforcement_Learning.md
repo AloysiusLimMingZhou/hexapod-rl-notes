@@ -137,17 +137,17 @@
     
     ### Core Formulas
     
-    ```math
-    \delta_t = r_t + \gamma V(s_{t+1})(1 - done_t) - V(s_t)
-    ```
+```math
+\delta_t = r_t + \gamma V(s_{t+1})(1 - done_t) - V(s_t)
+```
     
-    ```math
-    A_t = \delta_t + \gamma \lambda (1 - done_t) A_{t+1}
-    ```
+```math
+A_t = \delta_t + \gamma \lambda (1 - done_t) A_{t+1}
+```
     
-    ```math
-    R_t = A_t + V(s_t)
-    ```
+```math
+R_t = A_t + V(s_t)
+```
     
     ---
     
@@ -157,122 +157,122 @@
     
     ### Terminal Step (t = 9, done = 1)
     
-    ```math
-    \begin{aligned}
-    \delta_9 &= r_9 - V(s_9) \\
-    &= 4 - 2 = 2
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_9 &= r_9 - V(s_9) \\
+&= 4 - 2 = 2
+\end{aligned}
+```
     
-    ```math
-    A_9 = 2
-    ```
+```math
+A_9 = 2
+```
     
-    ```math
-    R_9 = 2 + 2 = 4
-    ```
+```math
+R_9 = 2 + 2 = 4
+```
     
     ---
     
     ### Step t = 8
     
-    ```math
-    \begin{aligned}
-    \delta_8 &= r_8 + \gamma V(s_9) - V(s_8) \\
-    &= 3 + 0.99(2) - 1 = 3.98
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_8 &= r_8 + \gamma V(s_9) - V(s_8) \\
+&= 3 + 0.99(2) - 1 = 3.98
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_8 &= \delta_8 + \gamma \lambda A_9 \\
-    &= 3.98 + 0.99(0.6)(2) = 5.168
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_8 &= \delta_8 + \gamma \lambda A_9 \\
+&= 3.98 + 0.99(0.6)(2) = 5.168
+\end{aligned}
+```
     
-    ```math
-    R_8 = 5.168 + 1 = 6.168
-    ```
+```math
+R_8 = 5.168 + 1 = 6.168
+```
     
     ---
     
     ### Step t = 7
     
-    ```math
-    \begin{aligned}
-    \delta_7 &= 2 + 0.99(1) - 2 = 0.99
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_7 &= 2 + 0.99(1) - 2 = 0.99
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_7 &= 0.99 + 0.99(0.6)(5.168) = 4.06
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_7 &= 0.99 + 0.99(0.6)(5.168) = 4.06
+\end{aligned}
+```
     
-    ```math
-    R_7 = 4.06 + 2 = 6.06
-    ```
+```math
+R_7 = 4.06 + 2 = 6.06
+```
     
     ---
     
     ### Step t = 6
     
-    ```math
-    \begin{aligned}
-    \delta_6 &= 1 + 0.99(2) - 3 = -0.02
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_6 &= 1 + 0.99(2) - 3 = -0.02
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_6 &= -0.02 + 0.99(0.6)(4.06) = 2.39
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_6 &= -0.02 + 0.99(0.6)(4.06) = 2.39
+\end{aligned}
+```
     
-    ```math
-    R_6 = 2.39 + 3 = 5.39
-    ```
+```math
+R_6 = 2.39 + 3 = 5.39
+```
     
     ---
     
     ### Step t = 5
     
-    ```math
-    \begin{aligned}
-    \delta_5 &= 2 + 0.99(3) - 4 = 0.97
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_5 &= 2 + 0.99(3) - 4 = 0.97
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_5 &= 0.97 + 0.99(0.6)(2.39) = 2.39
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_5 &= 0.97 + 0.99(0.6)(2.39) = 2.39
+\end{aligned}
+```
     
-    ```math
-    R_5 = 2.39 + 4 = 6.39
-    ```
+```math
+R_5 = 2.39 + 4 = 6.39
+```
     
     ---
     
     ### Step t = 4
     
-    ```math
-    \begin{aligned}
-    \delta_4 &= 3 + 0.99(4) - 5 = 1.96
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_4 &= 3 + 0.99(4) - 5 = 1.96
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_4 &= 1.96 + 0.99(0.6)(2.39) = 3.38
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_4 &= 1.96 + 0.99(0.6)(2.39) = 3.38
+\end{aligned}
+```
     
-    ```math
-    R_4 = 3.38 + 5 = 8.38
-    ```
+```math
+R_4 = 3.38 + 5 = 8.38
+```
     
     ---
     
@@ -282,81 +282,81 @@
     
     ### Step t = 3
     
-    ```math
-    \begin{aligned}
-    \delta_3 &= 4 + 0.99(5) - 4 = 4.95
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_3 &= 4 + 0.99(5) - 4 = 4.95
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_3 &= 4.95 + 0.99(0.6)(3.38) = 6.96
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_3 &= 4.95 + 0.99(0.6)(3.38) = 6.96
+\end{aligned}
+```
     
-    ```math
-    R_3 = 6.96 + 4 = 10.96
-    ```
+```math
+R_3 = 6.96 + 4 = 10.96
+```
     
     ---
     
     ### Step t = 2
     
-    ```math
-    \begin{aligned}
-    \delta_2 &= 3 + 0.99(4) - 3 = 3.96
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_2 &= 3 + 0.99(4) - 3 = 3.96
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_2 &= 3.96 + 0.99(0.6)(6.96) = 8.09
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_2 &= 3.96 + 0.99(0.6)(6.96) = 8.09
+\end{aligned}
+```
     
-    ```math
-    R_2 = 8.09 + 3 = 11.09
-    ```
+```math
+R_2 = 8.09 + 3 = 11.09
+```
     
     ---
     
     ### Step t = 1
     
-    ```math
-    \begin{aligned}
-    \delta_1 &= 2 + 0.99(3) - 2 = 2.97
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_1 &= 2 + 0.99(3) - 2 = 2.97
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_1 &= 2.97 + 0.99(0.6)(8.09) = 7.77
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_1 &= 2.97 + 0.99(0.6)(8.09) = 7.77
+\end{aligned}
+```
     
-    ```math
-    R_1 = 7.77 + 2 = 9.77
-    ```
+```math
+R_1 = 7.77 + 2 = 9.77
+```
     
     ---
     
     ### Step t = 0
     
-    ```math
-    \begin{aligned}
-    \delta_0 &= 1 + 0.99(2) - 1 = 1.98
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+\delta_0 &= 1 + 0.99(2) - 1 = 1.98
+\end{aligned}
+```
     
-    ```math
-    \begin{aligned}
-    A_0 &= 1.98 + 0.99(0.6)(7.77) = 6.59
-    \end{aligned}
-    ```
+```math
+\begin{aligned}
+A_0 &= 1.98 + 0.99(0.6)(7.77) = 6.59
+\end{aligned}
+```
     
-    ```math
-    R_0 = 6.59 + 1 = 7.59
-    ```
+```math
+R_0 = 6.59 + 1 = 7.59
+```
     
     ---
     
@@ -374,9 +374,9 @@
    * In policy-based model like PPO, our objective here is to maximize the probabilities of good actions, while minimize the probabilities of bad actions
    * In other words, we'd want to maximize the expected return (mean return), which is the sum of all our rewards from timestamp t to the future rewards.
    * Expected Return Function:
-   ```math
-   J(\pi_\theta) = \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}R(\tau)] = \mathbb{E}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}\gamma^t r_t]
-   ```
+```math
+J(\pi_\theta) = \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}R(\tau)] = \mathbb{E}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}\gamma^t r_t]
+```
    * Where we're finding the expected mean of our sum of current and future rewards, which are adjusted by parameters in the policy network
    
    ### Policy Gradient Expected Return 
@@ -384,38 +384,38 @@
    * In order to maximize the expected return, we'd need to find the gradient of the expected return and adjust the policy parameters, $\theta$ in $\pi_\theta$ to calculate the maximum point.
    * Thus, we'll do a simple derivative trick to derive our objective function to the policy gradient function:
    * **Part I: Probability of Trajectory**: Calculate the probability of each element in trajectory, $\tau = (s_0, a_0, s_1, a_1, ... , s_{t+1})$ to occur given that actions from policy, $\pi_\theta$ output is:
-   ```math
-   \begin{aligned}
-   &P(\tau|\theta) = p_0(s_0) \prod_{t=0}^{T} P(s_{t+1} | s_t, a_t)\pi_\theta (a_t | s_t)\\
-   &log(P(\tau | \theta)) = log p_0(s_0) + log(\prod_{t=0}^{T} P(s_{t+1} | s_t, a_t)\pi_\theta (a_t|s_t))\\
-   &= log p_0(s_0) + \sum_{t=0}^{T} log*P(s_{t+1} | s_t, a_t) + log(\pi_\theta (a_t|s_t))\\
-   &\Delta_\theta log(P(\tau | \theta)) \\
-   &= \Delta_\theta log p_0(s_0) + \sum_{t=0}^{T} (\Delta_\theta log*P(s_{t+1} | s_t, a_t) + \Delta_\theta log(\pi_\theta (a_t|s_t)))\\
-   &= \sum_{t=0}^{T} \Delta_\theta log \pi_\theta(a_t | s_t)
-   \end{aligned}
-   ```
+```math
+\begin{aligned}
+&P(\tau|\theta) = p_0(s_0) \prod_{t=0}^{T} P(s_{t+1} | s_t, a_t)\pi_\theta (a_t | s_t)\\
+&log(P(\tau | \theta)) = log p_0(s_0) + log(\prod_{t=0}^{T} P(s_{t+1} | s_t, a_t)\pi_\theta (a_t|s_t))\\
+&= log p_0(s_0) + \sum_{t=0}^{T} log*P(s_{t+1} | s_t, a_t) + log(\pi_\theta (a_t|s_t))\\
+&\Delta_\theta log(P(\tau | \theta)) \\
+&= \Delta_\theta log p_0(s_0) + \sum_{t=0}^{T} (\Delta_\theta log*P(s_{t+1} | s_t, a_t) + \Delta_\theta log(\pi_\theta (a_t|s_t)))\\
+&= \sum_{t=0}^{T} \Delta_\theta log \pi_\theta(a_t | s_t)
+\end{aligned}
+```
    
    ### Additional Notes: Log Derivative Trick
-   ```math
-   \begin{aligned}
-   &\Delta_\theta log(x) = \frac{1}{x}\Delta_\theta x\\
-   \text{So:}\\
-   &\Delta_\theta x = x\Delta_\theta log(x)
-   \end{aligned}
-   ```
+```math
+\begin{aligned}
+&\Delta_\theta log(x) = \frac{1}{x}\Delta_\theta x\\
+\text{So:}\\
+&\Delta_\theta x = x\Delta_\theta log(x)
+\end{aligned}
+```
    
    * **Part II: Policy Gradient Derivative Prove**
-   ```math
-   \begin{aligned}
-   &\Delta_\theta J(\pi_\theta) \\
-   &= \Delta_\theta \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}R(\tau)]\\
-   &= \Delta_\theta \int_{\tau} P(\tau | \theta) R(\tau)\\
-   &= \int_{\tau} \Delta_\theta P(\tau | \theta) R(\tau)\\
-   &= \int_{\tau} P(\tau | \theta) \Delta_\theta log P(\tau | \theta) R(\tau)\\
-   &= \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\Delta_\theta log P(\tau | \theta) R(\tau)]\\
-   &= \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}\Delta_\theta log \pi_\theta (a_t | s_t) R(\tau)]
-   \end{aligned}
-   ```
+```math
+\begin{aligned}
+&\Delta_\theta J(\pi_\theta) \\
+&= \Delta_\theta \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}R(\tau)]\\
+&= \Delta_\theta \int_{\tau} P(\tau | \theta) R(\tau)\\
+&= \int_{\tau} \Delta_\theta P(\tau | \theta) R(\tau)\\
+&= \int_{\tau} P(\tau | \theta) \Delta_\theta log P(\tau | \theta) R(\tau)\\
+&= \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\Delta_\theta log P(\tau | \theta) R(\tau)]\\
+&= \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}\Delta_\theta log \pi_\theta (a_t | s_t) R(\tau)]
+\end{aligned}
+```
    $$\Delta_\theta J(\theta) = \mathbb{E}[\Delta_\theta log\pi_\theta (a_t | s_t) A_t]$$
    * Where we calculate the difference between the probability of actions and states in a trajectory
    * However, modern PPO doesn't directly calculate the gradient of probability distribution, but rather calculate the ratio between latest policy and old policy as explained in further below.
@@ -426,27 +426,27 @@
     ![2 layer Neural Network Architecture Image](Reinforcement_Learning_Images/NeuralNetwork.png)
    - In hexapod training, the architecture of our NN model is as below:
    
-   ```math
-   \begin{aligned}
-    \text{Input Layer - Layer 1:}\\
-    S \in &\mathbb{R}^{\text{1x84}}\\
-    \theta^{\text{L1}} \in &\mathbb{R}^{\text{84x512}}\\
-    b^{\text{L1}} \in &\mathbb{R}^{\text{1x512}}\\
-    z^{\text{L1}} = & S\theta^{\text{L1}} + b^{\text{L1}} \in \mathbb{R}^{\text{1x512}} \\
-    a^{\text{L1}} = Elu(z^{\text{L1}})\\
-    \\
-    \text{Layer 1 - Layer 2:}\\
-    \theta^{\text{L2}} \in &\mathbb{R}^{\text{512x512}}\\
-    b^{\text{L2}} \in &\mathbb{R}^{\text{1x512}}\\
-    z^{\text{L2}} = & a^{\text{L1}}\theta^{\text{L2}} + b^{\text{L2}} \in \mathbb{R}^{\text{1x512}} \\
-    a^{\text{L2}} = Elu(z^{\text{L2}})\\
-    \\
-    \text{Layer 2 - Final Layer:}\\
-    \theta^{\text{Final}} \in &\mathbb{R}^{\text{512x18}}\\
-    b^{\text{Final}} \in &\mathbb{R}^{\text{1x18}}\\
-    z^{\text{Final}} = & a^{\text{L2}}\theta^{\text{Final}} + b^{\text{Final}} \in \mathbb{R}^{\text{1x18}} \\
-   \end{aligned}
-   ```
+```math
+\begin{aligned}
+ \text{Input Layer - Layer 1:}\\
+ S \in &\mathbb{R}^{\text{1x84}}\\
+ \theta^{\text{L1}} \in &\mathbb{R}^{\text{84x512}}\\
+ b^{\text{L1}} \in &\mathbb{R}^{\text{1x512}}\\
+ z^{\text{L1}} = & S\theta^{\text{L1}} + b^{\text{L1}} \in \mathbb{R}^{\text{1x512}} \\
+ a^{\text{L1}} = Elu(z^{\text{L1}})\\
+ \\
+ \text{Layer 1 - Layer 2:}\\
+ \theta^{\text{L2}} \in &\mathbb{R}^{\text{512x512}}\\
+ b^{\text{L2}} \in &\mathbb{R}^{\text{1x512}}\\
+ z^{\text{L2}} = & a^{\text{L1}}\theta^{\text{L2}} + b^{\text{L2}} \in \mathbb{R}^{\text{1x512}} \\
+ a^{\text{L2}} = Elu(z^{\text{L2}})\\
+ \\
+ \text{Layer 2 - Final Layer:}\\
+ \theta^{\text{Final}} \in &\mathbb{R}^{\text{512x18}}\\
+ b^{\text{Final}} \in &\mathbb{R}^{\text{1x18}}\\
+ z^{\text{Final}} = & a^{\text{L2}}\theta^{\text{Final}} + b^{\text{Final}} \in \mathbb{R}^{\text{1x18}} \\
+\end{aligned}
+```
 
   **How does policy function**:
   - In Reinforcement Learning, we usually use a neural network to act as the learnable weights. This act as the brain of our agents where its able to learn the relationship between the states and the actions, which provides the most optimal output.
@@ -481,19 +481,19 @@ $$\pi(a|s; \theta) = \prod_{i=1}^{18}\mathcal{N}(a_i; \mu_i, \sigma_i^2)$$, wher
  iii) Log-Likelihood: Use in stochastic policy to maximize the "good" actions probability and minimize the "bad" actions probability 
    - The purpose is that in our probability distribution, when we take the product of each probability of the action, the results will be extremely small, which leads to numerical instability. 
    - i.e.
-   ```math
-   \prod_{i=1}^{4}\mathcal{N}(a_i; \mu_i, \sigma_i^2) = a_1 * a_2 * a_3 * a_4 = 0.8 * 0.9 * 0.3 * 0.4 = 0.0856
-   ```
+```math
+\prod_{i=1}^{4}\mathcal{N}(a_i; \mu_i, \sigma_i^2) = a_1 * a_2 * a_3 * a_4 = 0.8 * 0.9 * 0.3 * 0.4 = 0.0856
+```
    - However, if we use logarithmic functions, those product of each action's probability will be converted into sum of each action's probability. Below is an example for illustration:
    
-   ```math
-   \begin{aligned}
-   &log(\prod_{i=0}^{4}\mathcal{N}(a_i; \mu_i, \sigma_i^2)) \\
-   &= log(a_1 * a_2 * a_3 * a_4) \\
-   &= log(a_1) + log(a_2) + log(a_3) + log(a_4) \\
-   &= -2.4581
-   \end{aligned}
-   ```
+```math
+\begin{aligned}
+&log(\prod_{i=0}^{4}\mathcal{N}(a_i; \mu_i, \sigma_i^2)) \\
+&= log(a_1 * a_2 * a_3 * a_4) \\
+&= log(a_1) + log(a_2) + log(a_3) + log(a_4) \\
+&= -2.4581
+\end{aligned}
+```
    - So the reason we use log likelihood estimation due to the monotomic nature of natural log, where $$x_1 < x_2 \approx log(x_1) < log(x_2)$$, thus the value will be equivalent.
    - Formula: $$log\pi (a|s; \theta)$$
     ![Proba vs Log](Reinforcement_Learning_Images/probaVsLog_RL.png)
@@ -521,41 +521,41 @@ $$\pi(a|s; \theta) = \prod_{i=1}^{18}\mathcal{N}(a_i; \mu_i, \sigma_i^2)$$, wher
 14. Loss Function in PPO: Used to calculate how wrong our agent is at making the action, and we pass the loss to the policy network to update the params to increase the probability of a better action and vice versa.
     - In PPO Loss Function, we calculate the ratio between the new policy and the old policy, and put it into the overall loss:
     $$r_t(\theta) = \frac{\pi_\theta(a_t | s_t)}{\pi_\theta'(a_t | s_t)}$$    
-    ```math
-    L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[r_tA(s_t, a_t)]
-    ```
+```math
+L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[r_tA(s_t, a_t)]
+```
     - Since we're using log loss in PPO to sum up the probabilities instead of taking the product to prevent too small values, the loss function will be as below:
-    ```math
-    L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[log(r_t)A(s_t, a_t)]
-    ```
-    ```math
-    = -\mathbb{E}_{a_t \sim \pi(a|s)}[log(\frac{\pi_\theta(a_t | s_t)}{\pi_\theta'(a_t | s_t)})A(s_t, a_t)]
-    ```
+```math
+L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[log(r_t)A(s_t, a_t)]
+```
+```math
+= -\mathbb{E}_{a_t \sim \pi(a|s)}[log(\frac{\pi_\theta(a_t | s_t)}{\pi_\theta'(a_t | s_t)})A(s_t, a_t)]
+```
 
 15. Kullback-Leiber Divergence: It measures the difference between old and new policy. \
     If the difference is too large, it indicates that the model is unstable and the movement is not natural, thus divergence will be high. The goal here is to minimize the KL Divergence value:
-    ```math
-    D_{KL}(\pi(a_t | s_t; \theta) || \pi'(a_t | s_t; \theta')) = \mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})]
-    ```
+```math
+D_{KL}(\pi(a_t | s_t; \theta) || \pi'(a_t | s_t; \theta')) = \mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})]
+```
     
     In most Reinforcement Learning Training Script, we tend to add a hard stop with a threshold value, where if the agent's KL exceeds the certain threshold, the training process will be cancelled:
-    ```math
-    \mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})] \le \delta
-    ```
+```math
+\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})] \le \delta
+```
     , where $\delta$ is the threshold value
 
     However, in modern PPO scripts, you'll see that they use the clipping method to clip the ratio(KL Value) of the agent instead of hard threshold, as this makes is mathematically smoother and more natural. We'll introduce it in Lagrangian Multiplier
 
 16. Lagrangian Multiplier with Soft thresholding in KL Divergence (TRPO):
     - Joining 15, we'd like to combine both PPO Loss Function & KL Divergence formula, thus we combine them together using Lagrangian Multiplier as a soft penalty to make everything natural
-    ```math
-    L' = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[A(s_t, a_t)\frac{\pi' (a_t|s_t; \theta')}{\pi(a_t|s_t; \theta)} + \beta KL((\pi(a_t | s_t; \theta)||(\pi'(a_t|s_t; \theta'))]
-    ```
+```math
+L' = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[A(s_t, a_t)\frac{\pi' (a_t|s_t; \theta')}{\pi(a_t|s_t; \theta)} + \beta KL((\pi(a_t | s_t; \theta)||(\pi'(a_t|s_t; \theta'))]
+```
 
 17. Gradient Clipping in PPO: This is used to prevent the gradient of the PPO algorithm from exploding too large
-    ```math
-    L^{\text{clip}} = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[min(r_t A(s_t, a_t), clip(r_t, 1-\epsilon, 1+\epsilon)A(s_t, a_t))]
-    ```
+```math
+L^{\text{clip}} = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[min(r_t A(s_t, a_t), clip(r_t, 1-\epsilon, 1+\epsilon)A(s_t, a_t))]
+```
     ### Detailed Explanation of Gradient Norm Clipping 
     During Backpropagation after the gradient is calculated:
     $$g = \Delta_\theta L$$
