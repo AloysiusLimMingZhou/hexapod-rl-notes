@@ -368,12 +368,15 @@
     
     Returns:
     R = [7.59, 9.77, 11.09, 10.96, 8.38, 6.39, 5.39, 6.06, 6.17, 4]
+    ```
 
 7. **Policy Objective (Expected Return)**: 
    * In policy-based model like PPO, our objective here is to maximize the probabilities of good actions, while minimize the probabilities of bad actions
    * In other words, we'd want to maximize the expected return (mean return), which is the sum of all our rewards from timestamp t to the future rewards.
    * Expected Return Function:
-   $$J(\pi_\theta) = \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}R(\tau)] = \mathbb{E}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}\gamma^t r_t]$$
+   ```math
+   J(\pi_\theta) = \underbrace{\mathbb{E}}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}R(\tau)] = \mathbb{E}_{\tau \sim \pi_\theta}[\sum_{t=0}^{T}\gamma^t r_t]
+   ```
    * Where we're finding the expected mean of our sum of current and future rewards, which are adjusted by parameters in the policy network
    
    ### Policy Gradient Expected Return 
@@ -477,7 +480,10 @@ $$\pi(a|s; \theta) = \prod_{i=1}^{18}\mathcal{N}(a_i; \mu_i, \sigma_i^2)$$, wher
 
  iii) Log-Likelihood: Use in stochastic policy to maximize the "good" actions probability and minimize the "bad" actions probability 
    - The purpose is that in our probability distribution, when we take the product of each probability of the action, the results will be extremely small, which leads to numerical instability. 
-   - i.e. $$\prod_{i=1}^{4}\mathcal{N}(a_i; \mu_i, \sigma_i^2) = a_1 * a_2 * a_3 * a_4 = 0.8 * 0.9 * 0.3 * 0.4 = 0.0856$$
+   - i.e.
+   ```math
+   \prod_{i=1}^{4}\mathcal{N}(a_i; \mu_i, \sigma_i^2) = a_1 * a_2 * a_3 * a_4 = 0.8 * 0.9 * 0.3 * 0.4 = 0.0856
+   ```
    - However, if we use logarithmic functions, those product of each action's probability will be converted into sum of each action's probability. Below is an example for illustration:
    
    ```math
@@ -515,26 +521,41 @@ $$\pi(a|s; \theta) = \prod_{i=1}^{18}\mathcal{N}(a_i; \mu_i, \sigma_i^2)$$, wher
 14. Loss Function in PPO: Used to calculate how wrong our agent is at making the action, and we pass the loss to the policy network to update the params to increase the probability of a better action and vice versa.
     - In PPO Loss Function, we calculate the ratio between the new policy and the old policy, and put it into the overall loss:
     $$r_t(\theta) = \frac{\pi_\theta(a_t | s_t)}{\pi_\theta'(a_t | s_t)}$$    
-    $$L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[r_tA(s_t, a_t)]$$
+    ```math
+    L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[r_tA(s_t, a_t)]
+    ```
     - Since we're using log loss in PPO to sum up the probabilities instead of taking the product to prevent too small values, the loss function will be as below:
-    $$L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[log(r_t)A(s_t, a_t)]$$
-    $$= -\mathbb{E}_{a_t \sim \pi(a|s)}[log(\frac{\pi_\theta(a_t | s_t)}{\pi_\theta'(a_t | s_t)})A(s_t, a_t)]$$
+    ```math
+    L' = -\mathbb{E}_{a_t \sim \pi(a|s)}[log(r_t)A(s_t, a_t)]
+    ```
+    ```math
+    = -\mathbb{E}_{a_t \sim \pi(a|s)}[log(\frac{\pi_\theta(a_t | s_t)}{\pi_\theta'(a_t | s_t)})A(s_t, a_t)]
+    ```
 
 15. Kullback-Leiber Divergence: It measures the difference between old and new policy. \
     If the difference is too large, it indicates that the model is unstable and the movement is not natural, thus divergence will be high. The goal here is to minimize the KL Divergence value:
-    $$D_{KL}(\pi(a_t | s_t; \theta) || \pi'(a_t | s_t; \theta')) = \mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})]$$
+    ```math
+    D_{KL}(\pi(a_t | s_t; \theta) || \pi'(a_t | s_t; \theta')) = \mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})]
+    ```
     
     In most Reinforcement Learning Training Script, we tend to add a hard stop with a threshold value, where if the agent's KL exceeds the certain threshold, the training process will be cancelled:
-    $$\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})] \le \delta$$, where $\delta$ is the threshold value
+    ```math
+    \mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[log(\frac{\pi(a_t | s_t; \theta)}{\pi'(a_t | s_t; \theta')})] \le \delta
+    ```
+    , where $\delta$ is the threshold value
 
     However, in modern PPO scripts, you'll see that they use the clipping method to clip the ratio(KL Value) of the agent instead of hard threshold, as this makes is mathematically smoother and more natural. We'll introduce it in Lagrangian Multiplier
 
 16. Lagrangian Multiplier with Soft thresholding in KL Divergence (TRPO):
     - Joining 15, we'd like to combine both PPO Loss Function & KL Divergence formula, thus we combine them together using Lagrangian Multiplier as a soft penalty to make everything natural
-    $$L' = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[A(s_t, a_t)\frac{\pi' (a_t|s_t; \theta')}{\pi(a_t|s_t; \theta)} + \beta KL((\pi(a_t | s_t; \theta)||(\pi'(a_t|s_t; \theta'))]$$
+    ```math
+    L' = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[A(s_t, a_t)\frac{\pi' (a_t|s_t; \theta')}{\pi(a_t|s_t; \theta)} + \beta KL((\pi(a_t | s_t; \theta)||(\pi'(a_t|s_t; \theta'))]
+    ```
 
 17. Gradient Clipping in PPO: This is used to prevent the gradient of the PPO algorithm from exploding too large
-    $$L^{\text{clip}} = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[min(r_t A(s_t, a_t), clip(r_t, 1-\epsilon, 1+\epsilon)A(s_t, a_t))]$$
+    ```math
+    L^{\text{clip}} = -\mathbb{E}_{a_t \sim \pi(a_t | s_t; \theta)}[min(r_t A(s_t, a_t), clip(r_t, 1-\epsilon, 1+\epsilon)A(s_t, a_t))]
+    ```
     ### Detailed Explanation of Gradient Norm Clipping 
     During Backpropagation after the gradient is calculated:
     $$g = \Delta_\theta L$$

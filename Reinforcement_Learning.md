@@ -45,7 +45,7 @@ Environment
      - In return function, it goes through the index from 1 to T across the entire rollout, and based on the current index, the index after it is flagged as future reward while the ones before is flagged as past reward.
      - i.e.: If the rollout is 100 steps, at 10th step in the rollout, step 1-9 is considered past reward, while step 11-100 is considered future reward.
      - It doesn't necessarily predict or estimate future movements, but rather let the agent run finish 1 full rollout, then compute the return value
-     - i.e.: R($\tau$) = $\Sigma_{t=0}^{99}r_t$ = $\underbrace{r_0 + r_1 + r_2 + ... + r_8}_{\text{past rewards}} + \underbrace{r_9}_{\text{current reward}} + \underbrace{r_{10} + r_{11} + r_{12} + ... + r_{99}}_{\text{future reward}}$
+     - i.e.: R($\tau$) = $\Sigma_{t=0}^{99}r_t$ = $`\underbrace{r_0 + r_1 + r_2 + ... + r_8}_{\text{past rewards}} + \underbrace{r_9}_{\text{current reward}} + \underbrace{r_{10} + r_{11} + r_{12} + ... + r_{99}}_{\text{future reward}}`$
    
 7. Policy: Given a state, it decides the best action that'll maximize the reward (Similar to how forward propagation works in deep learning)
    ## Preface
@@ -146,21 +146,25 @@ ii. Model-Based RL
 Advanced Value-Based Methods
 =======================================================================================\
 a) General Value Functions:\
-$\underbrace{V_\pi (s)}_{\text{Value Function} } = \underbrace{\mathbb{E}_\pi[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...}_{Expected Discounted Return} | \underbrace{S_t = s}_{Current State in the sequence of states}]$
+$`\underbrace{V_\pi (s)}_{\text{Value Function} } = \underbrace{\mathbb{E}_\pi[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...}_{Expected Discounted Return} | \underbrace{S_t = s}_{Current State in the sequence of states}]`$
 
 b) On-Policy Value Function:\
-$V^\pi(s) = \underbrace{\mathbb{E}}_{\tau \sim \pi}[R(\tau)|s_0 = s, a_0 = a]$\
+$`V^\pi(s) = \underbrace{\mathbb{E}}_{\tau \sim \pi}[R(\tau)|s_0 = s, a_0 = a]`$\
 In On-Policy Value Function, it calculates the expected return given a state and the agent acts according with the policy function $\pi$
 
 c) On-Policy Action-Value Function:\
-$Q^\pi(s, a) = \underbrace{\mathbb{E}}_{\tau \sim \pi}[R(\tau)|s_0 = s, a_0 = a]$\
+$`Q^\pi(s, a) = \underbrace{\mathbb{E}}_{\tau \sim \pi}[R(\tau)|s_0 = s, a_0 = a]`$\
 In On-Policy Action-Value Function, it calculates the expected return if the agent start in a state, takes an initial action, and then act and update according to policy $\pi$
 
 10. Optimal Value Function: In Optimal Value Function, it maximizes the expected return if the agent start in a state, and acts according the optimal policy. Optimal policy here refer to the converged neural network.
-    $$V^*(s) = \underbrace{max}_{\pi}V^\pi(s)$$
+    ```math
+    V^*(s) = \underbrace{max}_{\pi}V^\pi(s)
+    ```
 
 11. Optimal Action-Value Function: In Optimal Value Function, it maximizes the expected return if the agent start in a state, takes an initial action, and acts according the optimal policy
-    $$Q^*(s, a) = \underbrace{max}_{\pi}Q^\pi(s, a)$$
+    ```math
+    Q^*(s, a) = \underbrace{max}_{\pi}Q^\pi(s, a)
+    ```
 
 10. Episode: A complete series of actions done by a model with the state from start to finish
 11. Rollout: A set series of actions done by a model with the state (subset of episode). Used to update policy.
