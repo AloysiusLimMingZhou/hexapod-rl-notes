@@ -1774,14 +1774,14 @@ $$
 
 ### Actor-critic
 
-$$
+```math
 \min_{\theta,\phi}
 \underbrace{L_{actor}(\theta;\hat A_\phi)}_{\text{improve policy}}
 +
  c_v\underbrace{L_{critic}(\phi)}_{\text{predict return}}
 -
  c_e\underbrace{\mathcal H(\pi_\theta)}_{\text{encourage exploration}}.
-$$
+```
 
 Signs vary by implementation because some libraries maximize objectives while others minimize losses.
 
@@ -2883,11 +2883,11 @@ A PPO implementation may use both, but they solve different problems.
 
 The ratio clip does not mathematically guarantee a fixed KL-divergence bound. PPO implementations often monitor approximate KL:
 
-$$
+```math
 \widehat{D}_{KL}(\pi_{old}\|\pi_\theta)
 \approx
 \mathbb E[\log\pi_{old}(A_t\mid S_t)-\log\pi_\theta(A_t\mid S_t)].
-$$
+```
 
 Training may stop an epoch early if KL exceeds a threshold. The clipped objective and KL monitoring complement each other.
 
