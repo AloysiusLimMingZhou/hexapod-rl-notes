@@ -58,3 +58,20 @@ $$
      $$
      \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)
      $$
+
+## 8. List item, single-line $$...$$ on its own line
+
+1. Item text
+   $$\delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)$$
+
+## 9. List item, single-line aligned with \\ row break
+
+1. Item text
+   $$\begin{aligned} \delta_9 &= r_9 - V(s_9) \\ &= 4 - 2 = 2 \end{aligned}$$
+
+## 10. Deeply nested, single-line $$...$$
+
+1. Top level item
+   * Sub bullet
+     ### A heading inside the sub bullet
+     $$\delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)$$
