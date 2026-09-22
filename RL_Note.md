@@ -793,18 +793,18 @@ Bellman equations apply this recursive decomposition to decision-making.
 The optimal value functions assume that the best possible decisions are made from the next state onward:
 
 $$
-V^{*}(s)=\max_a\mathbb E[R_{t+1}+\gamma V^{*}(S_{t+1})\mid s,a],
+V^\ast(s)=\max_a\mathbb E[R_{t+1}+\gamma V^\ast(S_{t+1})\mid s,a],
 $$
 
 $$
-Q^{*}(s,a) =
-\mathbb E\left[R_{t+1}+\gamma\max_{a'}Q^{*}(S_{t+1},a')\mid s,a\right].
+Q^\ast(s,a) =
+\mathbb E\left[R_{t+1}+\gamma\max_{a'}Q^\ast(S_{t+1},a')\mid s,a\right].
 $$
 
-An optimal policy can be recovered from $Q^{*}$:
+An optimal policy can be recovered from $Q^\ast$:
 
 $$
-\pi^{*}(s)\in\arg\max_aQ^{*}(s,a).
+\pi^\ast(s)\in\arg\max_aQ^\ast(s,a).
 $$
 
 This is the conceptual foundation of Q-learning and DQN.
@@ -1211,13 +1211,13 @@ Both raw returns are positive, but the advantage correctly says that B was worse
 The optimal state value is:
 
 $$
-V^{*}(s)=\max_\pi V^\pi(s).
+V^\ast(s)=\max_\pi V^\pi(s).
 $$
 
 The optimal action value is:
 
 $$
-Q^{*}(s,a)=\max_\pi Q^\pi(s,a).
+Q^\ast(s,a)=\max_\pi Q^\pi(s,a).
 $$
 
 They answer what can be achieved by the best possible future policy, not merely the current one.
@@ -1225,17 +1225,17 @@ They answer what can be achieved by the best possible future policy, not merely 
 For discrete actions:
 
 $$
-V^{*}(s)=\max_aQ^{*}(s,a).
+V^\ast(s)=\max_aQ^\ast(s,a).
 $$
 
-DQN approximates $Q^{*}$, while a PPO critic normally approximates $V^{\pi_\theta}$ for the current actor.
+DQN approximates $Q^\ast$, while a PPO critic normally approximates $V^{\pi_\theta}$ for the current actor.
 
 ## 5.7 What different algorithms learn
 
 | Algorithm | Main learned quantities |
 |---|---|
-| Tabular Q-learning | $Q^{*}(s,a)$ |
-| DQN | Neural approximation $Q_\theta(s,a)\approx Q^{*}(s,a)$ |
+| Tabular Q-learning | $Q^\ast(s,a)$ |
+| DQN | Neural approximation $Q_\theta(s,a)\approx Q^\ast(s,a)$ |
 | REINFORCE | Policy $\pi_\theta$; optional baseline |
 | PPO | Actor $\pi_\theta$ and usually critic $V_\phi$ |
 | TD3 | Deterministic actor $\mu_\theta$ and two critics $Q_{\phi_1},Q_{\phi_2}$ |
@@ -2377,7 +2377,7 @@ $$
 This is practical only when the state space is small. A 2048 board has an enormous number of possible configurations, while image-based Atari states are effectively uncountable. A neural network generalizes across similar states:
 
 $$
-Q_\theta(s,a)\approx Q^{*}(s,a).
+Q_\theta(s,a)\approx Q^\ast(s,a).
 $$
 
 For a discrete action set, one forward pass commonly outputs all action values:
@@ -2520,13 +2520,13 @@ Double DQN separates action selection from action evaluation.
 Select with the online network:
 
 $$
-a^{*}=\arg\max_{a'}Q_\theta(s',a').
+a^\ast=\arg\max_{a'}Q_\theta(s',a').
 $$
 
 Evaluate with the target network:
 
 $$
-y=r+\gamma mQ_{\bar\theta}(s',a^{*}).
+y=r+\gamma mQ_{\bar\theta}(s',a^\ast).
 $$
 
 This reduces maximization bias without requiring a completely separate second critic architecture.
@@ -2572,7 +2572,7 @@ $$
 y_t^{(n)} =
 \sum_{k=0}^{n-1}\gamma^kR_{t+k+1}
 +
-\gamma^nm_{t+n}Q_{\bar\theta}(S_{t+n},a^{*}).
+\gamma^nm_{t+n}Q_{\bar\theta}(S_{t+n},a^\ast).
 $$
 
 It propagates reward information more quickly than one-step targets, while retaining bootstrapping.
@@ -4283,7 +4283,7 @@ $$
 ## 18.7 Bellman optimality equation
 
 $$
-Q^{*}(s,a)=\mathbb E[R_{t+1}+\gamma\max_{a'}Q^{*}(S_{t+1},a')\mid s,a].
+Q^\ast(s,a)=\mathbb E[R_{t+1}+\gamma\max_{a'}Q^\ast(S_{t+1},a')\mid s,a].
 $$
 
 ## 18.8 Monte Carlo value update
@@ -4340,11 +4340,11 @@ $$
 ## 18.15 Double DQN target
 
 $$
-a^{*}=\arg\max_{a'}Q_\theta(s',a'),
+a^\ast=\arg\max_{a'}Q_\theta(s',a'),
 $$
 
 $$
-y=r+\gamma mQ_{\bar\theta}(s',a^{*}).
+y=r+\gamma mQ_{\bar\theta}(s',a^\ast).
 $$
 
 ## 18.16 PPO ratio
